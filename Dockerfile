@@ -10,6 +10,8 @@ ENV ES_HEAP_SIZE 1g
 
 RUN \
     cd / && \
+    ulimit -l unlimited && \
+    ulimit -u unlimited && \
     echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | debconf-set-selections && \
     apt-get update && \
     apt-get install -yyq software-properties-common python-software-properties && \
