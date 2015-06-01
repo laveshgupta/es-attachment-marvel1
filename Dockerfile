@@ -28,6 +28,10 @@ RUN \
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
+# Setting ulimit values
+ADD /home/ubuntu/setUlimit.sh /
+CMD ["/setUlimit"]
+
 # Define mountable directories.
 VOLUME ["/data"]
 
