@@ -30,7 +30,7 @@ RUN \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # Setting ulimit values
-ADD setUlimit.sh /
+#ADD setUlimit.sh /
 
 
 # Define mountable directories.
@@ -42,8 +42,8 @@ VOLUME ["/data"]
 WORKDIR /data
 
 # Define default command.
-#CMD ["/elasticsearch/bin/elasticsearch"]
-CMD ["/setUlimit.sh"]
+CMD ["/elasticsearch/bin/elasticsearch"]
+#CMD ["/setUlimit.sh"]
 
 # Expose ports.
 #   - 9200: HTTP
