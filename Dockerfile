@@ -21,6 +21,7 @@ RUN \
     mv /$ES_PKG_NAME /elasticsearch && \
     ./elasticsearch/bin/plugin install elasticsearch/elasticsearch-mapper-attachments/2.5.0 && \
     ./elasticsearch/bin/plugin install elasticsearch/marvel/latest && \
+    ./elasticsearch/bin/plugin install mobz/elasticsearch-head && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/cache/oracle-jdk8-installer && \
     rm -f $ES_PKG_NAME.tar.gz /elasticsearch/config/elasticsearch.yml 
