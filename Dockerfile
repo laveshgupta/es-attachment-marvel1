@@ -7,6 +7,9 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C
 ENV ES_HEAP_SIZE 1g
 
+# Setting ulimit values
+ADD setUlimit.sh /
+
 
 RUN \
     cd / && \
@@ -19,18 +22,18 @@ RUN \
     wget https://download.elastic.co/elasticsearch/elasticsearch/$ES_PKG_NAME.tar.gz && \
     tar xvzf $ES_PKG_NAME.tar.gz && \
     mv /$ES_PKG_NAME /elasticsearch && \
-    ./elasticsearch/bin/plugin install elasticsearch/elasticsearch-mapper-attachments/2.5.0 && \
-    ./elasticsearch/bin/plugin install elasticsearch/marvel/latest && \
-    ./elasticsearch/bin/plugin install mobz/elasticsearch-head && \
+    ./elasticsearch/bin/plugin --install elasticsearch/elasticsearch-mapper-attachments/2.5.0 && \
+    ./elasticsearch/bin/plugin --install elasticsearch/marvel/latest && \
+    ./elasticsearch/bin/plugin --install mobz/elasticsearch-head && \
+    ./elasticsearch/bin/plugin --install elasticsearch/elasticsearch-cloud-aws/2.6.0 && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/cache/oracle-jdk8-installer && \
-    rm -f $ES_PKG_NAME.tar.gz /elasticsearch/config/elasticsearch.yml 
+    rm -f $ES_PKG_NAME.tar.gz /elasticsearch/config/elasticsearch.yml && \
+    chmod 777 /setUlimit.sh
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-# Setting ulimit values
-#ADD setUlimit.sh /
 
 
 # Define mountable directories.
@@ -42,8 +45,8 @@ VOLUME ["/data"]
 WORKDIR /data
 
 # Define default command.
-CMD ["/elasticsearch/bin/elasticsearch"]
-#CMD ["/setUlimit.sh"]
+#CMD ["/elasticsearch/bin/elasticsearch"]
+CMD ["/setUlimit.sh"]
 
 # Expose ports.
 #   - 9200: HTTP
