@@ -1,7 +1,6 @@
 # Pull base image.
 FROM ubuntu:14.04
 
-
 ENV ES_PKG_NAME elasticsearch-1.5.0
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C
@@ -9,7 +8,6 @@ ENV ES_HEAP_SIZE 1g
 
 # Setting ulimit values
 ADD setUlimit.sh /
-
 
 RUN \
     cd / && \
@@ -34,8 +32,6 @@ RUN \
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
-
-
 # Define mountable directories.
 VOLUME ["/data"]
 
@@ -53,4 +49,3 @@ CMD ["/setUlimit.sh"]
 #   - 9300: transport
 EXPOSE 9200
 EXPOSE 9300
-
