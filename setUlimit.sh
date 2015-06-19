@@ -1,6 +1,6 @@
 #!/bin/bash
 ulimit -l unlimited
 ulimit -l
-ulimit -n 131072
+ulimit -n 1048576
 ulimit -n
-/elasticsearch/bin/elasticsearch
+/es/bin/elasticsearch

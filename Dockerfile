@@ -19,11 +19,11 @@ RUN \
     apt-get install -qyy --no-install-recommends oracle-java8-installer oracle-java8-set-default && \
     wget https://download.elastic.co/elasticsearch/elasticsearch/$ES_PKG_NAME.tar.gz && \
     tar xvzf $ES_PKG_NAME.tar.gz && \
-    mv /$ES_PKG_NAME /elasticsearch && \
-    ./elasticsearch/bin/plugin --install elasticsearch/elasticsearch-mapper-attachments/2.5.0 && \
-    ./elasticsearch/bin/plugin --install elasticsearch/marvel/latest && \
-    ./elasticsearch/bin/plugin --install mobz/elasticsearch-head && \
-    ./elasticsearch/bin/plugin --install elasticsearch/elasticsearch-cloud-aws/2.6.0 && \
+    mv /$ES_PKG_NAME /es && \
+    ./es/bin/plugin --install elasticsearch/elasticsearch-mapper-attachments/2.5.0 && \
+    ./es/bin/plugin --install elasticsearch/marvel/latest && \
+    ./es/bin/plugin --install mobz/elasticsearch-head && \
+    ./es/bin/plugin --install elasticsearch/elasticsearch-cloud-aws/2.5.1 && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/cache/oracle-jdk8-installer && \
     rm -f $ES_PKG_NAME.tar.gz /elasticsearch/config/elasticsearch.yml && \
@@ -41,7 +41,7 @@ VOLUME ["/data"]
 WORKDIR /data
 
 # Define default command.
-#CMD ["/elasticsearch/bin/elasticsearch"]
+#CMD ["/es/bin/elasticsearch"]
 CMD ["/setUlimit.sh"]
 
 # Expose ports.
