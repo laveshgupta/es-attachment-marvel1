@@ -5,6 +5,7 @@ ENV ES_PKG_NAME elasticsearch-1.5.0
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C
 ENV ES_HEAP_SIZE 1g
+ENV LANG C.UTF-8
 
 # Setting ulimit values
 ADD setUlimit.sh /
